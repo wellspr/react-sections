@@ -13,16 +13,76 @@ npm install --save react-sections
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react';
 
-import MyComponent from 'react-sections'
-import 'react-sections/dist/index.css'
+import { 
+  Sections,
+  Section, 
+  Content,
+  SideNavbar,
+  useListenToScroll
+} from 'react-sections';
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+const SectionsPage = () => {
+
+  const sideNavbarSections = [
+    {
+      id: "second_section",
+      href: "#second_section",
+      linkText: "Second Section",
+    },
+    {
+      id: "third_section",
+      href: "#third_section",
+      linkText: "Third Section",
+    }
+  ];
+
+  const { setListenToScroll } = useListenToScroll();
+
+  return (
+    <Sections>
+      <Section
+        id="first_section"
+        fitScreen={true}
+        className="w-100"
+        >
+        <Content>
+          <h1>First Section</h1>
+        </Content>
+      </Section>
+
+      <Section
+        id="second_section"
+        fullHeight={true}
+        style={{ width: "70%" }}
+        >
+        <Content>
+          <h2>Second Section</h2>
+        </Content>
+      </Section>
+
+      <Section
+        id="third_section"
+        fullHeight={true}
+        style={{ width: "70%" }}
+        >
+        <Content>
+          <h2>Third Section</h2>
+        </Content>
+      </Section>
+
+      <SideNavbar 
+          leftRef="second_section"
+          setListenToScroll={setListenToScroll}
+          sideNavbarSections={sideNavbarSections}
+      />
+
+    </Sections>
+  );
+};
+
+export default SectionsPage;
 ```
 
 ## License
